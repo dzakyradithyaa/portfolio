@@ -16,3 +16,27 @@ hamburger.addEventListener("click", function () {
   hamburger.classList.toggle("hamburger-active");
   navMenu.classList.toggle("hidden");
 });
+
+//form
+function sendMessage() {
+  (function () {
+    emailjs.init("zwaIRTwYrW7trxY1P"); //Account Public Key
+  })();
+  var serviceID = "service_fpesdss"; //Email Service ID
+  var templateID = "template_d9qgw0p"; //Email Template ID
+  var params = {
+    sendername: document.querySelector("#name").value,
+    senderemail: document.querySelector("#email").value,
+    message: document.querySelector("#message").value,
+  };
+  emailjs
+    .send(serviceID, templateID, params)
+    .then((res) => {
+      alert(
+        "Thank you " +
+          params["sendername"] +
+          "!, Your message has been sent & privacy."
+      );
+    })
+    .catch();
+}
